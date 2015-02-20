@@ -21,17 +21,15 @@ public class Main {
 			throw new ExceptionInInitializerError(ex);
 		}
 		
-		addEvent("La paja mistica");
+		testEverything();
 	}
 	
-	public static Long addEvent(String name) {
+	public static void testEverything() {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		Long EventId = null;
+		Long userId = null;
 		try {
 			tx = session.beginTransaction();
-			Event evento = new Event(name, null);
-			EventId = (Long) session.save(evento);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx!= null) tx.rollback();
@@ -39,7 +37,6 @@ public class Main {
 		} finally {
 			session.close();
 		}
-		return EventId;
 	}
 	
 }

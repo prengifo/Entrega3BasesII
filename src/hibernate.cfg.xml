@@ -24,7 +24,15 @@
 		
 		<!-- Mention here all the model classes along with their package name -->
 		<!-- Using Annotations -->
-		<mapping class="main.java.entrega.Event" />
+		<mapping class="main.java.entrega.Categoria" />
+		<mapping class="main.java.entrega.Ciudad" />
+		<mapping class="main.java.entrega.DineroPromocion" />
+		<mapping class="main.java.entrega.Empresa" />
+		<mapping class="main.java.entrega.Promocion" />
+		<mapping class="main.java.entrega.RedSocial" />
+		<mapping class="main.java.entrega.TarjetaDeCredito" />
+		<mapping class="main.java.entrega.Ubicacion" />
+		<mapping class="main.java.entrega.Usuario" />
 
 	</session-factory>
 </hibernate-configuration>

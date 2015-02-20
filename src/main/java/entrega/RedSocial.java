@@ -27,6 +27,12 @@ public class RedSocial {
 	)
 	private Usuario usuario;
 	
+	@ManyToOne()
+	@JoinTable(
+			name="Promocion_RedSocial", 
+			joinColumns = @JoinColumn(name="id"),
+			inverseJoinColumns = @JoinColumn(name="url")
+	)
 	private Promocion promocion;
 	
 	public RedSocial() {}

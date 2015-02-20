@@ -2,6 +2,7 @@ package main.java.entrega;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,25 +22,13 @@ public class Categoria {
 	private String nombre;
 	
 	@ManyToOne()
-	@JoinTable(
-			name="Categoria_Subcategoria", 
-			joinColumns = @JoinColumn(name="nombre_hijo"),
-			inverseJoinColumns = @JoinColumn(name="nombre_padre"))
+	@JoinColumn(name="nombre_hijo")
 	private Categoria categoriaPadre;
 	
-	@OneToMany()
-	@JoinTable(
-			name="Categoria_Subcategoria", 
-			joinColumns = @JoinColumn(name="nombre_hijo"),
-			inverseJoinColumns = @JoinColumn(name="nombre_padre"))
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="categoriaPadre")
 	private List<Categoria> subcategoria;
 	
-	@OneToMany()
-	@JoinTable(
-			name="Categoria_Empresa", 
-			joinColumns = @JoinColumn(name="nombre"),
-			inverseJoinColumns = @JoinColumn(name="correoElectronico")
-	)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="categoria")
 	private List<Empresa> empresas;
 	
 	@ManyToMany()
@@ -49,6 +38,9 @@ public class Categoria {
             inverseJoinColumns=@JoinColumn(name="nombre")
     )
 	private List<Usuario> usuarios;
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="categoria")
+	private List<Promocion> promociones;
 
 	public Categoria() {}
 

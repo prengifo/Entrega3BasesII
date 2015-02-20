@@ -1,11 +1,15 @@
 package main.java.entrega;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -39,21 +43,10 @@ public class Empresa {
 	)
 	private Categoria categoria;
 	
-	public Empresa() {
-	}
-
-	public Empresa(String nombre, String correoElectronico, String contrasena,
-			String telefono, String direccion, int numClientes) {
-		super();
-		this.nombre = nombre;
-		this.correoElectronico = correoElectronico;
-		this.contrasena = contrasena;
-		this.telefono = telefono;
-		this.direccion = direccion;
-		this.numClientes = numClientes;
-	}
-
-
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="empresa")
+	private List<Promocion> promociones;
+	
+	public Empresa() {}
 
 	public String getNombre() {
 		return nombre;

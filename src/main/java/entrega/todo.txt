@@ -1,11 +1,6 @@
-Clases:
-
-Ubicacion, Promocion
-
 Relaciones:
 
-Selecciona ciudad, ciudad contiene ubicacion, promocion se encuentra ubicacion,
-usuario comparte promocion, usuario compra promocion,
-categorias contiene promociones, empresa publica promocion, promocion posee red social
+Selecciona ciudad,promocion se encuentra ubicacion,
+usuario comparte promocion, usuario compra promocion
 
 Revisar al asoc. Calificada de Usuario - Tarjeta de Credito

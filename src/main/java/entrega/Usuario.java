@@ -48,20 +48,10 @@ public class Usuario {
 	@MapsId
 	private DineroPromocion saldoPromocion;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(
-			name="Usuario_TarjetaCredito", 
-			joinColumns = @JoinColumn(name="username"),
-			inverseJoinColumns = @JoinColumn(name="numeroTarjeta")
-	)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="usuario")
 	private List<TarjetaDeCredito> tarjetasDeCredito;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(
-			name="Usuario_RedSocial", 
-			joinColumns = @JoinColumn(name="username"),
-			inverseJoinColumns = @JoinColumn(name="url")
-	)
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="usuario")
 	private List<RedSocial> redesSociales;
 	
 	@ManyToMany()

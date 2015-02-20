@@ -1,26 +1,39 @@
 package main.java.entrega;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Ubicacion")
 public class Ubicacion {
 	
+	@Id
+	@Column(name="nombre")
 	private String coordenadas;
+	
+	@Column(name="calle")
 	private String calle;
+	
+	@Column(name="avenida")
 	private String avenida;
+	
+	@Column(name="edificio")
 	private String edifico;
+	
+	@Column(name="local")
 	private String local;
 	
-	public Ubicacion() {
-	}
-
-	public Ubicacion(String coordenadas, String calle, String avenida,
-			String edifico, String local) {
-		super();
-		this.coordenadas = coordenadas;
-		this.calle = calle;
-		this.avenida = avenida;
-		this.edifico = edifico;
-		this.local = local;
-	}
-
+	@ManyToOne()
+	@JoinTable(name="Ubicacion_Ciudad")
+	private Ciudad ciudad;
+	
+	public Ubicacion() {}
 
 	public String getCoordenadas() {
 		return coordenadas;

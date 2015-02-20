@@ -2,13 +2,26 @@ package main.java.entrega;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Promocion")
 public class Promocion {
+	
+	@Id 
+	@GeneratedValue
+	private Long id;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -25,26 +38,34 @@ public class Promocion {
 	@Column(name="periodoVigencia")
 	private String periodoVigencia;
 	
+	@ElementCollection
+	@CollectionTable(name="EnlacesWeb", joinColumns=@JoinColumn(name="id"))
 	@Column(name="enlacesWeb")
 	private List<String> enlacesWeb;
 	
 	@Column(name="calificacion")
 	private float calificacion;
 	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="promocion")
+	private List<RedSocial> redesSociales;
+	
+	@ManyToOne()
+	@JoinTable(
+			name="Categoria_Promocion", 
+			joinColumns = @JoinColumn(name="nombre"),
+			inverseJoinColumns = @JoinColumn(name="id")
+	)
+	private Categoria categoria;
+	
+	@ManyToOne()
+	@JoinTable(
+			name="Promocion_Empresa", 
+			joinColumns = @JoinColumn(name="id"),
+			inverseJoinColumns = @JoinColumn(name="correoElectronico")
+	)
+	private Empresa empresa;
+	
 	public Promocion() {}
-
-	public Promocion(String nombre, String descripcion, String montoOriginal,
-			String montoOfertado, String periodoVigencia,
-			List<String> enlacesWeb, float calificacion) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.montoOriginal = montoOriginal;
-		this.montoOfertado = montoOfertado;
-		this.periodoVigencia = periodoVigencia;
-		this.enlacesWeb = enlacesWeb;
-		this.calificacion = calificacion;
-	}
-
 
 
 	public String getNombre() {
