@@ -1,6 +1,9 @@
 Relaciones:
 
-Selecciona ciudad,promocion se encuentra ubicacion,
 usuario comparte promocion, usuario compra promocion
 
 Revisar al asoc. Calificada de Usuario - Tarjeta de Credito
+
+poblar en el main
+
+consultas

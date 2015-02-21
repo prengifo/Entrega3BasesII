@@ -62,6 +62,12 @@ public class Usuario {
     )
 	private List<Categoria> categoriasPreferidas;
 	
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="usuarios")
+	private List<Ciudad> ciudadesPreferidas;
+	
+	@OneToMany(mappedBy = "pk.usuario", cascade=CascadeType.ALL)
+	private List<Comparte> promocionesCompartidas;
+	
 	public Usuario() {}
 
 	public String getNombre() {

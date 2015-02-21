@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -64,6 +65,17 @@ public class Promocion {
 			inverseJoinColumns = @JoinColumn(name="correoElectronico")
 	)
 	private Empresa empresa;
+	
+	@ManyToMany()
+    @JoinTable(
+            name="Usuario_Ciudad",
+            joinColumns=@JoinColumn(name="id"),
+            inverseJoinColumns=@JoinColumn(name="coordenadas")
+    )
+	private List<Ubicacion> ubicaciones;
+	
+	@OneToMany(mappedBy = "pk.promocion", cascade=CascadeType.ALL)
+	private List<Comparte> usuariosHanCompartido;
 	
 	public Promocion() {}
 

@@ -33,6 +33,7 @@
 		<mapping class="main.java.entrega.TarjetaDeCredito" />
 		<mapping class="main.java.entrega.Ubicacion" />
 		<mapping class="main.java.entrega.Usuario" />
+		<mapping class="main.java.entrega.Comparte" />
 
 	</session-factory>
 </hibernate-configuration>

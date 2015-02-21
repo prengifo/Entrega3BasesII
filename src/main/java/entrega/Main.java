@@ -21,7 +21,7 @@ public class Main {
 			throw new ExceptionInInitializerError(ex);
 		}
 		
-		testEverything();
+//		testEverything();
 	}
 	
 	public static void testEverything() {

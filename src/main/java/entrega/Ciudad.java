@@ -10,6 +10,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +29,17 @@ public class Ciudad {
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="ciudad")
 	private List<Ubicacion> ubicaciones;
+	
+	@ManyToMany()
+    @JoinTable(
+            name="Usuario_Ciudad",
+            joinColumns={
+                @JoinColumn(name="nombre"),
+                @JoinColumn(name="radio"),
+            },
+            inverseJoinColumns=@JoinColumn(name="username")
+    )
+	private List<Usuario> usuarios;
 	
 	public Ciudad() {}
 
