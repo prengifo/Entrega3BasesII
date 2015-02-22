@@ -17,6 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 @Entity
 @Table(name="Promocion")
 public class Promocion {
@@ -194,6 +197,5 @@ public class Promocion {
 	public void setUsuariosHanComprado(List<Compra> usuariosHanComprado) {
 		this.usuariosHanComprado = usuariosHanComprado;
 	}
-	
 
 }
