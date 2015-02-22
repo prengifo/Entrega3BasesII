@@ -58,6 +58,21 @@ public class Main {
 		return results;
 	}
 	
+	public List<Object[]> promocionesPorEmpresa(Session session) {
+		Query query = session.createQuery("select e.nombre, e.promociones from "
+				+ "Empresa e");
+		return query.list();
+	}
+	
+	public List<Object[]> promocionesCompartidasPorUsuario(Session session,
+			Usuario usuario){
+		Query query = session.createQuery("select c.promocion from Comparte c,"
+				+ "Usuario u"
+				+ "inner join u.promocionesCompartidas"
+				+ "where u.username = :username");
+		query.setParameter("username", usuario.getUsername());
+		return query.list();
+	}
 	
 	
 }
