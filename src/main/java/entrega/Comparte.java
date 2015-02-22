@@ -31,7 +31,6 @@ public class Comparte {
 	private ComparteId pk;
 	
 	@ElementCollection
-	@CollectionTable(name="destinarios", joinColumns=@JoinColumn(name="pk"))
 	@Column(name="destinatarios")
 	private List<String> destinatarios;
 
@@ -86,8 +85,6 @@ class ComparteId implements Serializable {
 
 	public void setPromocionCompartida(Promocion promocion) {
 		this.promocion = promocion;
-	}
-	
-	
+	}	
 	
 }

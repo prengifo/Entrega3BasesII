@@ -7,6 +7,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -74,8 +75,11 @@ public class Promocion {
     )
 	private List<Ubicacion> ubicaciones;
 	
-	@OneToMany(mappedBy = "pk.promocion", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.promocion")
 	private List<Comparte> usuariosHanCompartido;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.promocion")
+	private List<Compra> usuariosHanComprado;
 	
 	public Promocion() {}
 

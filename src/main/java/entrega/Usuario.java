@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -65,8 +66,11 @@ public class Usuario {
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="usuarios")
 	private List<Ciudad> ciudadesPreferidas;
 	
-	@OneToMany(mappedBy = "pk.usuario", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.usuario", cascade=CascadeType.ALL)
 	private List<Comparte> promocionesCompartidas;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.usuario", cascade=CascadeType.ALL)
+	private List<Compra> promocionesAdquiridas;
 	
 	public Usuario() {}
 

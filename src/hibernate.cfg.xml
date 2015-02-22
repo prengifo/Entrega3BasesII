@@ -19,6 +19,7 @@
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
 		<!-- Drop and re-create the database schema on startup -->
 		<property name="hbm2ddl.auto">create</property>
 		
@@ -34,6 +35,7 @@
 		<mapping class="main.java.entrega.Ubicacion" />
 		<mapping class="main.java.entrega.Usuario" />
 		<mapping class="main.java.entrega.Comparte" />
+		<mapping class="main.java.entrega.Compra" />
 
 	</session-factory>
 </hibernate-configuration>

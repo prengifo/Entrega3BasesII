@@ -1,6 +1,6 @@
 Relaciones:
 
-usuario comparte promocion, usuario compra promocion
+usuario compra promocion
 
 Revisar al asoc. Calificada de Usuario - Tarjeta de Credito
 
