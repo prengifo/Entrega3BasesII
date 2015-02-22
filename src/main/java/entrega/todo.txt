@@ -1,9 +1,3 @@
-Relaciones:
-
-usuario compra promocion
-
-Revisar al asoc. Calificada de Usuario - Tarjeta de Credito
-
 poblar en el main
 
 consultas

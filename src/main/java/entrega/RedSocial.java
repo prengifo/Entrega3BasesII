@@ -37,9 +37,11 @@ public class RedSocial {
 	
 	public RedSocial() {}
 
-	public RedSocial(String servicio, String url) {
-		super();
-		this.servicio = servicio;
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
 		this.url = url;
 	}
 
@@ -51,13 +53,22 @@ public class RedSocial {
 		this.servicio = servicio;
 	}
 
-	public String getUrl() {
-		return url;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+
+	public Promocion getPromocion() {
+		return promocion;
+	}
+
+	public void setPromocion(Promocion promocion) {
+		this.promocion = promocion;
+	}
+
 	
 	
 }

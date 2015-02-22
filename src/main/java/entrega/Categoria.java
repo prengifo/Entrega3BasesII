@@ -52,11 +52,43 @@ public class Categoria {
 		this.nombre = nombre;
 	}
 
+	public Categoria getCategoriaPadre() {
+		return categoriaPadre;
+	}
+
+	public void setCategoriaPadre(Categoria categoriaPadre) {
+		this.categoriaPadre = categoriaPadre;
+	}
+
 	public List<Categoria> getSubcategoria() {
 		return subcategoria;
 	}
 
 	public void setSubcategoria(List<Categoria> subcategoria) {
 		this.subcategoria = subcategoria;
+	}
+
+	public List<Empresa> getEmpresas() {
+		return empresas;
+	}
+
+	public void setEmpresas(List<Empresa> empresas) {
+		this.empresas = empresas;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+	public List<Promocion> getPromociones() {
+		return promociones;
+	}
+
+	public void setPromociones(List<Promocion> promociones) {
+		this.promociones = promociones;
 	}
 }

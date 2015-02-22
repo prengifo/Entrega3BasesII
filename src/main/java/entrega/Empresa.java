@@ -48,20 +48,20 @@ public class Empresa {
 	
 	public Empresa() {}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public String getCorreoElectronico() {
 		return correoElectronico;
 	}
 
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getContrasena() {
@@ -95,7 +95,21 @@ public class Empresa {
 	public void setNumClientes(int numClientes) {
 		this.numClientes = numClientes;
 	}
-	
-	
-	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Promocion> getPromociones() {
+		return promociones;
+	}
+
+	public void setPromociones(List<Promocion> promociones) {
+		this.promociones = promociones;
+	}
+
 }

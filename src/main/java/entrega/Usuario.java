@@ -145,6 +145,56 @@ public class Usuario {
 	public void setSaldoPromocion(DineroPromocion saldoPromocion) {
 		this.saldoPromocion = saldoPromocion;
 	}
+
+	public List<TarjetaDeCredito> getTarjetasDeCredito() {
+		return tarjetasDeCredito;
+	}
+
+	public void setTarjetasDeCredito(List<TarjetaDeCredito> tarjetasDeCredito) {
+		this.tarjetasDeCredito = tarjetasDeCredito;
+	}
+
+	public List<RedSocial> getRedesSociales() {
+		return redesSociales;
+	}
+
+	public void setRedesSociales(List<RedSocial> redesSociales) {
+		this.redesSociales = redesSociales;
+	}
+
+	public List<Categoria> getCategoriasPreferidas() {
+		return categoriasPreferidas;
+	}
+
+	public void setCategoriasPreferidas(List<Categoria> categoriasPreferidas) {
+		this.categoriasPreferidas = categoriasPreferidas;
+	}
+
+	public List<Ciudad> getCiudadesPreferidas() {
+		return ciudadesPreferidas;
+	}
+
+	public void setCiudadesPreferidas(List<Ciudad> ciudadesPreferidas) {
+		this.ciudadesPreferidas = ciudadesPreferidas;
+	}
+
+	public List<Comparte> getPromocionesCompartidas() {
+		return promocionesCompartidas;
+	}
+
+	public void setPromocionesCompartidas(List<Comparte> promocionesCompartidas) {
+		this.promocionesCompartidas = promocionesCompartidas;
+	}
+
+	public List<Compra> getPromocionesAdquiridas() {
+		return promocionesAdquiridas;
+	}
+
+	public void setPromocionesAdquiridas(List<Compra> promocionesAdquiridas) {
+		this.promocionesAdquiridas = promocionesAdquiridas;
+	}
+	
+	
 	
 
 }

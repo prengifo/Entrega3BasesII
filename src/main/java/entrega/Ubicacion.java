@@ -91,6 +91,22 @@ public class Ubicacion {
 	public void setLocal(String local) {
 		this.local = local;
 	}
+
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public List<Promocion> getPromociones() {
+		return promociones;
+	}
+
+	public void setPromociones(List<Promocion> promociones) {
+		this.promociones = promociones;
+	}
 	
 	
 	

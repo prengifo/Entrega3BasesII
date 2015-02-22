@@ -13,12 +13,10 @@ public class DineroPromocion {
 	private float cantidad;
 
 	@Id
+	@Column(name="username")
 	private String username;
+	
 	public DineroPromocion() {}
-
-	public DineroPromocion(float cantidad) {
-		this.cantidad = cantidad;
-	}
 
 	public float getCantidad() {
 		return cantidad;
@@ -27,7 +25,14 @@ public class DineroPromocion {
 	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	
 }

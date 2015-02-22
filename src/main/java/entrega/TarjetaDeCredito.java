@@ -67,4 +67,22 @@ public class TarjetaDeCredito {
 		this.codigoSeguridad = codigoSeguridad;
 	}
 
+	public String getNumeroTarjeta() {
+		return numeroTarjeta;
+	}
+
+	public void setNumeroTarjeta(String numeroTarjeta) {
+		this.numeroTarjeta = numeroTarjeta;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
+
 }

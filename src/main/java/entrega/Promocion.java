@@ -83,6 +83,13 @@ public class Promocion {
 	
 	public Promocion() {}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -139,7 +146,54 @@ public class Promocion {
 	public void setCalificacion(float calificacion) {
 		this.calificacion = calificacion;
 	}
-	
+
+	public List<RedSocial> getRedesSociales() {
+		return redesSociales;
+	}
+
+	public void setRedesSociales(List<RedSocial> redesSociales) {
+		this.redesSociales = redesSociales;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
+	public List<Ubicacion> getUbicaciones() {
+		return ubicaciones;
+	}
+
+	public void setUbicaciones(List<Ubicacion> ubicaciones) {
+		this.ubicaciones = ubicaciones;
+	}
+
+	public List<Comparte> getUsuariosHanCompartido() {
+		return usuariosHanCompartido;
+	}
+
+	public void setUsuariosHanCompartido(List<Comparte> usuariosHanCompartido) {
+		this.usuariosHanCompartido = usuariosHanCompartido;
+	}
+
+	public List<Compra> getUsuariosHanComprado() {
+		return usuariosHanComprado;
+	}
+
+	public void setUsuariosHanComprado(List<Compra> usuariosHanComprado) {
+		this.usuariosHanComprado = usuariosHanComprado;
+	}
 	
 
 }

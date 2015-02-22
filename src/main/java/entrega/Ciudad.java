@@ -43,6 +43,14 @@ public class Ciudad {
 	
 	public Ciudad() {}
 
+	public CiudadId getId() {
+		return id;
+	}
+
+	public void setId(CiudadId id) {
+		this.id = id;
+	}
+
 	public int getNumeroPromociones() {
 		return numeroPromociones;
 	}
@@ -57,6 +65,22 @@ public class Ciudad {
 
 	public void setCalificacion(float calificacion) {
 		this.calificacion = calificacion;
+	}
+
+	public List<Ubicacion> getUbicaciones() {
+		return ubicaciones;
+	}
+
+	public void setUbicaciones(List<Ubicacion> ubicaciones) {
+		this.ubicaciones = ubicaciones;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 	
 	
