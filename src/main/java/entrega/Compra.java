@@ -59,6 +59,32 @@ public class Compra {
 	public void setPromocion(Promocion promocion) {
 		getPk().setPromocion(promocion);
 	}
+
+	public boolean isCompartido() {
+		return compartido;
+	}
+
+	public void setCompartido(boolean compartido) {
+		this.compartido = compartido;
+	}
+
+	public String getMetodoPago() {
+		return metodoPago;
+	}
+
+	public void setMetodoPago(String metodoPago) {
+		this.metodoPago = metodoPago;
+	}
+
+	public String getDestinatario() {
+		return destinatario;
+	}
+
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
+	}
+	
+	
 }
 
 @Embeddable

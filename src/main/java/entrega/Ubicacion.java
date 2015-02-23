@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Ubicacion {
 	
 	@Id
-	@Column(name="nombre")
+	@Column(name="coordenadas")
 	private String coordenadas;
 	
 	@Column(name="calle")

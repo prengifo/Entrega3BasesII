@@ -46,7 +46,6 @@ public class Usuario {
 	private String frecuenciaCorreos;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@MapsId
 	private DineroPromocion saldoPromocion;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="usuario")

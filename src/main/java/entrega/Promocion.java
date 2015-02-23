@@ -72,7 +72,7 @@ public class Promocion {
 	
 	@ManyToMany()
     @JoinTable(
-            name="Usuario_Ciudad",
+            name="Promocion_Ciudad",
             joinColumns=@JoinColumn(name="id"),
             inverseJoinColumns=@JoinColumn(name="coordenadas")
     )

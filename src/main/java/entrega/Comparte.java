@@ -60,6 +60,16 @@ public class Comparte {
 		getPk().setPromocionCompartida(promocion);
 	}
 
+	public List<String> getDestinatarios() {
+		return destinatarios;
+	}
+
+	public void setDestinatarios(List<String> destinatarios) {
+		this.destinatarios = destinatarios;
+	}
+	
+	
+
 }
 
 @Embeddable
