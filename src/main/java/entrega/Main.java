@@ -109,6 +109,7 @@ public class Main {
 			List<Promocion> promociones = new ArrayList<>();
 			promociones.add(promocion);
 			categoria3.setPromociones(promociones);
+			empresa1.setPromociones(promociones);
 			
 			Promocion promocion2 = new Promocion();
 			promocion2.setNombre("desarrollos web gratis");
@@ -117,7 +118,7 @@ public class Main {
 			promocion2.setCategoria(categoria2);
 			
 			Promocion promocion3 = new Promocion();
-			promocion3.setNombre("desarollo de aplicaciones moviles con descuento");
+			promocion3.setNombre("desarrollo de aplicaciones moviles con descuento");
 			promocion3.setEmpresa(empresa2);
 			promocion3.setUbicaciones(ubicaciones);
 			promocion3.setCategoria(categoria2);
@@ -126,6 +127,7 @@ public class Main {
 			promociones1.add(promocion2);
 			promociones1.add(promocion3);
 			categoria2.setPromociones(promociones1);
+			empresa2.setPromociones(promociones1);
 			
 			RedSocial redSocial1 = new RedSocial();
 			redSocial1.setServicio("twitter");
@@ -190,20 +192,37 @@ public class Main {
 			session.save(compra2);
 			session.save(comparte1);
 			
+			// HQL is fully object-oriented and understands notions like inheritance,
+			// polymorphism and association.
+			// source http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch16.html
+			
+			System.out.println("Primera Consulta");
 			List<Promocion> res = promocionesPorNombre(session, "desarrollo");
 			for (Promocion temp : res) {
 				System.out.println(temp.getNombre());
 			}
 			
-//			List<Object[]> res1 = promocionesPorEmpresa(session);
-//			for (Object[] temp : res1) {
-//				String nombre = (String) temp[0];
-//				Promocion promo = (Promocion) temp[1];
-//				System.out.println(nombre);
-//				System.out.println(promo.getNombre());
-//			}
+			System.out.println();
+			System.out.println("Segunda Consulta");
+			List<Empresa> res1 = promocionesPorEmpresa(session);
+			for (Empresa temp : res1) {
+				System.out.println("----------------");
+				System.out.println(temp.getNombre());
+				System.out.println("Promociones");
+				for (Promocion temp1 : temp.getPromociones()){
+					System.out.println(temp1.getNombre());
+				}
+			}
 			
-//			List<Object[]> res2 = promocionesCompartidasPorUsuario(session, user);
+			System.out.println();
+			System.out.println("Tercera Consulta");
+			List<Comparte> res2 = promocionesCompartidasPorUsuario(session, user);
+			for (Comparte temp : res2) {
+				System.out.print("Promociones compartidas por ");
+				System.out.println(temp.getUsuario().getUsername());
+				System.out.println("----------------");
+				System.out.println(temp.getPromocion().getNombre());
+			}
 			
 			
 			tx.commit();
@@ -218,24 +237,22 @@ public class Main {
 	// Funciones para consulta
 	
 	public static List<Promocion> promocionesPorNombre(Session session, String consulta) {
+		// faltaban los % en el parametro
 		Query query = session.createQuery("from Promocion where nombre like :nombre");
 		query.setParameter("nombre", "%"+ consulta + "%");
 		List<Promocion> results = query.list();
 		return results;
 	}
 	
-	public static List<Object[]> promocionesPorEmpresa(Session session) {
-		Query query = session.createQuery("select nombre, promociones from "
-				+ "Empresa");
+	// simplificacion de los queries
+	public static List<Empresa> promocionesPorEmpresa(Session session) {
+		Query query = session.createQuery("from Empresa");
 		return query.list();
 	}
 	
-	public static List<Object[]> promocionesCompartidasPorUsuario(Session session,
+	public static List<Comparte> promocionesCompartidasPorUsuario(Session session,
 			Usuario usuario){
-		Query query = session.createQuery("select c.promocion from Comparte c,"
-				+ "Usuario u"
-				+ "inner join u.promocionesCompartidas"
-				+ "where u.username = :username");
+		Query query = session.createQuery("from Comparte where username = :username");
 		query.setParameter("username", usuario.getUsername());
 		return query.list();
 	}
