@@ -188,6 +188,14 @@ public class Main {
 			session.save(compra2);
 			session.save(comparte1);
 			
+			List<Promocion> res = promocionesPorNombre(session, "desarrollo");
+			for (Promocion temp : res) {
+				System.out.println(temp.getNombre());
+			}
+			
+			List<Object[]> res1 = promocionesPorEmpresa(session);
+			
+			List<Object[]> res2 = promocionesCompartidasPorUsuario(session, user);
 			
 			tx.commit();
 		} catch (HibernateException e) {
@@ -200,20 +208,20 @@ public class Main {
 	
 	// Funciones para consulta
 	
-	public List<Promocion> promocionesPorNombre(Session session, String consulta) {
+	public static List<Promocion> promocionesPorNombre(Session session, String consulta) {
 		Query query = session.createQuery("from Promocion where nombre like :nombre");
 		query.setParameter("nombre", consulta);
 		List<Promocion> results = query.list();
 		return results;
 	}
 	
-	public List<Object[]> promocionesPorEmpresa(Session session) {
-		Query query = session.createQuery("select e.nombre, e.promociones from "
-				+ "Empresa e");
+	public static List<Object[]> promocionesPorEmpresa(Session session) {
+		Query query = session.createQuery("select nombre, promociones from "
+				+ "Empresa");
 		return query.list();
 	}
 	
-	public List<Object[]> promocionesCompartidasPorUsuario(Session session,
+	public static List<Object[]> promocionesCompartidasPorUsuario(Session session,
 			Usuario usuario){
 		Query query = session.createQuery("select c.promocion from Comparte c,"
 				+ "Usuario u"
