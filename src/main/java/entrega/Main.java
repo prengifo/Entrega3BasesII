@@ -41,6 +41,8 @@ public class Main {
 		try {
 			tx = session.beginTransaction();
 			
+			// Siguiendo los ejemplos de Moodle se hacen los insert
+			
 			Usuario user = new Usuario();
 			user.setUsername("prengifo");
 			
@@ -193,9 +195,16 @@ public class Main {
 				System.out.println(temp.getNombre());
 			}
 			
-			List<Object[]> res1 = promocionesPorEmpresa(session);
+//			List<Object[]> res1 = promocionesPorEmpresa(session);
+//			for (Object[] temp : res1) {
+//				String nombre = (String) temp[0];
+//				Promocion promo = (Promocion) temp[1];
+//				System.out.println(nombre);
+//				System.out.println(promo.getNombre());
+//			}
 			
-			List<Object[]> res2 = promocionesCompartidasPorUsuario(session, user);
+//			List<Object[]> res2 = promocionesCompartidasPorUsuario(session, user);
+			
 			
 			tx.commit();
 		} catch (HibernateException e) {
@@ -210,7 +219,7 @@ public class Main {
 	
 	public static List<Promocion> promocionesPorNombre(Session session, String consulta) {
 		Query query = session.createQuery("from Promocion where nombre like :nombre");
-		query.setParameter("nombre", consulta);
+		query.setParameter("nombre", "%"+ consulta + "%");
 		List<Promocion> results = query.list();
 		return results;
 	}
