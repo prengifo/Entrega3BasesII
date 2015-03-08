@@ -2,9 +2,8 @@ package main.java.entrega;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
-import java.util.Iterator;
 
+import main.java.entrega.models.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,7 +12,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 public class Main {
 	static SessionFactory factory;
@@ -34,6 +32,21 @@ public class Main {
 		
 		testEverything();
 	}
+
+    public static void deleteTDC(TarjetaDeCredito tarjetaDeCredito){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            session.delete(tarjetaDeCredito);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!= null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 	
 	public static void testEverything() {
 		Session session = factory.openSession();
@@ -51,17 +64,17 @@ public class Main {
 			Categoria categoria2 = new Categoria();
 			categoria2.setNombre("desarrollo");
 			categoria2.setCategoriaPadre(categoria1);
-			List<Categoria> hijos = new ArrayList<>();
-			hijos.add(categoria2);
-			categoria1.setSubcategoria(hijos);
+//			List<Categoria> hijos = new ArrayList<>();
+//			hijos.add(categoria2);
+//			categoria1.setSubcategoria(hijos);
 			
 			Categoria categoria3 = new Categoria();
 			categoria3.setNombre("cafes");
 			
 			TarjetaDeCredito tarjeta = new TarjetaDeCredito();
-			tarjeta.setNombre("patrick skjdksjd");
+			tarjeta.setNombre("patrick s rengifo m");
 			tarjeta.setNumeroTarjeta("1212 767676 2525 6990");
-			tarjeta.setFechaDeVencimiento("12/12/12");
+			tarjeta.setFechaDeVencimiento("12-Dic-2012");
 			tarjeta.setCodigoSeguridad(122);
 			
 			tarjeta.setUsuario(user);
@@ -70,10 +83,11 @@ public class Main {
 			user.setTarjetasDeCredito(tarjetasDeCredito);
 			
 			Ciudad city = new Ciudad();
-			city.id = new CiudadId();
-			city.id.setNombre("Caracas");
-			city.id.setRadio("20");
-			
+			CiudadId cityid = new CiudadId();
+			cityid.setNombre("Caracas");
+			cityid.setRadio("20");
+			city.setId(cityid);
+
 			Ubicacion ubicacion1 = new Ubicacion();
 			ubicacion1.setCoordenadas("123456, -4567");
 			Ubicacion ubicacion2 = new Ubicacion();
@@ -197,32 +211,15 @@ public class Main {
 			// source http://docs.jboss.org/hibernate/orm/4.3/manual/en-US/html/ch16.html
 			
 			System.out.println("Primera Consulta");
-			List<Promocion> res = promocionesPorNombre(session, "desarrollo");
-			for (Promocion temp : res) {
-				System.out.println(temp.getNombre());
-			}
+			promocionesPorNombre(session, "desarrollo");
 			
 			System.out.println();
 			System.out.println("Segunda Consulta");
-			List<Empresa> res1 = promocionesPorEmpresa(session);
-			for (Empresa temp : res1) {
-				System.out.println("----------------");
-				System.out.println(temp.getNombre());
-				System.out.println("Promociones");
-				for (Promocion temp1 : temp.getPromociones()){
-					System.out.println(temp1.getNombre());
-				}
-			}
+			promocionesPorEmpresa(session);
 			
 			System.out.println();
 			System.out.println("Tercera Consulta");
-			List<Comparte> res2 = promocionesCompartidasPorUsuario(session, user);
-			for (Comparte temp : res2) {
-				System.out.print("Promociones compartidas por ");
-				System.out.println(temp.getUsuario().getUsername());
-				System.out.println("----------------");
-				System.out.println(temp.getPromocion().getNombre());
-			}
+			promocionesCompartidasPorUsuario(session, user);
 			
 			
 			tx.commit();
@@ -236,25 +233,41 @@ public class Main {
 	
 	// Funciones para consulta
 	
-	public static List<Promocion> promocionesPorNombre(Session session, String consulta) {
+	public static void promocionesPorNombre(Session session, String consulta) {
 		// faltaban los % en el parametro
 		Query query = session.createQuery("from Promocion where nombre like :nombre");
 		query.setParameter("nombre", "%"+ consulta + "%");
 		List<Promocion> results = query.list();
-		return results;
+        for (Promocion temp : results) {
+            System.out.println(temp.getNombre());
+        }
 	}
 	
 	// simplificacion de los queries
-	public static List<Empresa> promocionesPorEmpresa(Session session) {
+	public static void promocionesPorEmpresa(Session session) {
 		Query query = session.createQuery("from Empresa");
-		return query.list();
+        List<Empresa> res1 = query.list();
+        for (Empresa temp : res1) {
+            System.out.println("----------------");
+            System.out.println(temp.getNombre());
+            System.out.println("Promociones");
+            for (Promocion temp1 : temp.getPromociones()){
+                System.out.println(temp1.getNombre());
+            }
+        }
 	}
 	
-	public static List<Comparte> promocionesCompartidasPorUsuario(Session session,
+	public static void promocionesCompartidasPorUsuario(Session session,
 			Usuario usuario){
 		Query query = session.createQuery("from Comparte where username = :username");
 		query.setParameter("username", usuario.getUsername());
-		return query.list();
+		List<Comparte> res2 = query.list();
+        for (Comparte temp : res2) {
+            System.out.print("Promociones compartidas por ");
+            System.out.println(temp.getUsuario().getUsername());
+            System.out.println("----------------");
+            System.out.println(temp.getPromocion().getNombre());
+        }
 	}
 	
 	

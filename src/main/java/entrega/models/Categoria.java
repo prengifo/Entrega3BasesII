@@ -1,4 +1,4 @@
-package main.java.entrega;
+package main.java.entrega.models;
 
 import java.util.List;
 

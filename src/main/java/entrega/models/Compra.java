@@ -1,16 +1,13 @@
-package main.java.entrega;
+package main.java.entrega.models;
 
 import java.beans.Transient;
-import java.io.Serializable;
 
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -84,32 +81,5 @@ public class Compra {
 		this.destinatario = destinatario;
 	}
 	
-	
-}
-
-@Embeddable
-class CompraId implements Serializable {
-	
-	@ManyToOne
-	private Usuario usuario;
-	
-	@ManyToOne
-	private Promocion promocion;
-
-	public Usuario getComprador() {
-		return usuario;
-	}
-
-	public void setComprador(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public Promocion getPromocion() {
-		return promocion;
-	}
-
-	public void setPromocion(Promocion promocion) {
-		this.promocion = promocion;
-	}	
 	
 }

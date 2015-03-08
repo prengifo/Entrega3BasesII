@@ -1,4 +1,4 @@
-package main.java.entrega;
+package main.java.entrega.models;
 
 import java.util.List;
 
@@ -16,9 +16,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 @Entity
 @Table(name="Promocion")

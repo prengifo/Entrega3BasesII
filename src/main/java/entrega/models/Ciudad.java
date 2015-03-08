@@ -1,11 +1,9 @@
-package main.java.entrega;
+package main.java.entrega.models;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -84,26 +82,4 @@ public class Ciudad {
 	}
 	
 	
-}
-
-@Embeddable
-class CiudadId implements Serializable {
-	private String nombre;
-	private String radio;
-	
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getRadio() {
-		return radio;
-	}
-
-	public void setRadio(String radio) {
-		this.radio = radio;
-	}
 }

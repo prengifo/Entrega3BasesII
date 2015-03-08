@@ -1,12 +1,9 @@
-package main.java.entrega;
+package main.java.entrega.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import main.java.entrega.states.Estado;
+import main.java.entrega.states.EstadoCreada;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="TarjetaDeCredito")
@@ -24,6 +21,13 @@ public class TarjetaDeCredito {
 	
 	@Column(name="codigoSeguridad")
 	private int codigoSeguridad;
+
+    @Column(name = "vencida")
+    private boolean vencida;
+
+    // Se marca asi para que Hibernate no lo tome en cuenta para la base
+    @Transient
+    private Estado estado; //Estado de la tarjeta de credito
 	
 	@ManyToOne
 	@JoinTable(
@@ -41,6 +45,8 @@ public class TarjetaDeCredito {
 		this.nombre = nombre;
 		this.fechaDeVencimiento = fechaDeVencimiento;
 		this.codigoSeguridad = codigoSeguridad;
+        this.vencida = false;
+        this.estado = new EstadoCreada();
 	}
 
 	public String getNombre() {
@@ -75,13 +81,33 @@ public class TarjetaDeCredito {
 		this.numeroTarjeta = numeroTarjeta;
 	}
 
-	public Usuario getUsuario() {
+    public boolean isVencida() {
+        return vencida;
+    }
+
+    public void setVencida(boolean vencida) {
+        this.vencida = vencida;
+    }
+
+    public Usuario getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+    public void setEstado(Estado estado){
+        this.estado = estado;
+    }
+
+    public Estado getEstado(){
+        return estado;
+    }
+
+    public void doAction() {
+        estado.doAction(this);
+    }
 	
 	
 

@@ -25,17 +25,17 @@
 		
 		<!-- Mention here all the model classes along with their package name -->
 		<!-- Using Annotations -->
-		<mapping class="main.java.entrega.Categoria" />
-		<mapping class="main.java.entrega.Ciudad" />
-		<mapping class="main.java.entrega.DineroPromocion" />
-		<mapping class="main.java.entrega.Empresa" />
-		<mapping class="main.java.entrega.Promocion" />
-		<mapping class="main.java.entrega.RedSocial" />
-		<mapping class="main.java.entrega.TarjetaDeCredito" />
-		<mapping class="main.java.entrega.Ubicacion" />
-		<mapping class="main.java.entrega.Usuario" />
-		<mapping class="main.java.entrega.Comparte" />
-		<mapping class="main.java.entrega.Compra" />
+		<mapping class="main.java.entrega.models.Categoria" />
+		<mapping class="main.java.entrega.models.Ciudad" />
+		<mapping class="main.java.entrega.models.DineroPromocion" />
+		<mapping class="main.java.entrega.models.Empresa" />
+		<mapping class="main.java.entrega.models.Promocion" />
+		<mapping class="main.java.entrega.models.RedSocial" />
+		<mapping class="main.java.entrega.models.TarjetaDeCredito" />
+		<mapping class="main.java.entrega.models.Ubicacion" />
+		<mapping class="main.java.entrega.models.Usuario" />
+		<mapping class="main.java.entrega.models.Comparte" />
+		<mapping class="main.java.entrega.models.Compra" />
 
 	</session-factory>
 </hibernate-configuration>
