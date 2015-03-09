@@ -33,12 +33,15 @@ public class Main {
 		testEverything();
 	}
 
-    public static void deleteTDC(TarjetaDeCredito tarjetaDeCredito){
+    public static void deleteTDC(String tarjetaDeCreditoId){
         Session session = factory.openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            session.delete(tarjetaDeCredito);
+            TarjetaDeCredito toDelete = (TarjetaDeCredito) session.load(TarjetaDeCredito.class, tarjetaDeCreditoId);
+            if (toDelete != null){
+                session.delete(toDelete);
+            }
             tx.commit();
         } catch (HibernateException e) {
             if (tx!= null) tx.rollback();
@@ -70,16 +73,19 @@ public class Main {
 			
 			Categoria categoria3 = new Categoria();
 			categoria3.setNombre("cafes");
-			
-			TarjetaDeCredito tarjeta = new TarjetaDeCredito();
-			tarjeta.setNombre("patrick s rengifo m");
-			tarjeta.setNumeroTarjeta("1212 767676 2525 6990");
-			tarjeta.setFechaDeVencimiento("12-Dic-2012");
-			tarjeta.setCodigoSeguridad(122);
-			
+
+
+			TarjetaDeCredito tarjeta = new TarjetaDeCredito("1212 767676 2525 6990", "patrick s rengifo m",
+                    "12-2012", 122);
+
+            TarjetaDeCredito tarjeta1 = new TarjetaDeCredito("374656559608168", "patrick s rengifo m",
+                    "12-2016", 122);
+
 			tarjeta.setUsuario(user);
+            tarjeta1.setUsuario(user);
 			List<TarjetaDeCredito> tarjetasDeCredito = new ArrayList<>();
 			tarjetasDeCredito.add(tarjeta);
+            tarjetasDeCredito.add(tarjeta1);
 			user.setTarjetasDeCredito(tarjetasDeCredito);
 			
 			Ciudad city = new Ciudad();
@@ -220,9 +226,12 @@ public class Main {
 			System.out.println();
 			System.out.println("Tercera Consulta");
 			promocionesCompartidasPorUsuario(session, user);
-			
-			
+
 			tx.commit();
+            System.out.println("prueba de estados");
+            tarjeta.doAction();
+            tarjeta1.doAction();
+
 		} catch (HibernateException e) {
 			if (tx!= null) tx.rollback();
 			e.printStackTrace();

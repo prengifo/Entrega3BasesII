@@ -13,6 +13,6 @@ public class EstadoInvalida implements Estado {
 
         System.out.println("Liberamos datos de tarjeta invalida");
 
-        deleteTDC(tdc);
+        deleteTDC(tdc.getNumeroTarjeta());
     }
 }

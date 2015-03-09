@@ -31,13 +31,12 @@ public class EstadoCreada implements Estado {
 
         // Si son validos, verificamos la fecha de vencimiento
         if (valid) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("MM-yyyy");
             Date date = null;
 
             try {
 
                 date = formatter.parse(tdc.getFechaDeVencimiento());
-                System.out.println(date);
                 System.out.println(formatter.format(date));
 
             } catch (ParseException e) {
@@ -45,13 +44,18 @@ public class EstadoCreada implements Estado {
             }
 
             assert date != null;
-            if (date.after(new Date())) {
+            if (date.before(new Date())) {
+                System.out.println("TDC invalida");
                 tdc.setEstado(new EstadoInvalida());
+                tdc.doAction();
             } else {
                 tdc.setEstado(new EstadoActivada());
+                tdc.doAction();
             }
         } else {
-            tdc.setEstado(new EstadoActivada());
+            System.out.println("TDC invalida");
+            tdc.setEstado(new EstadoInvalida());
+            tdc.doAction();
         }
 
     }

@@ -39,17 +39,16 @@ public class TarjetaDeCredito {
 	
 	public TarjetaDeCredito() {}
 
-	public TarjetaDeCredito(String nombre, String fechaDeVencimiento,
-			int codigoSeguridad) {
-		super();
-		this.nombre = nombre;
-		this.fechaDeVencimiento = fechaDeVencimiento;
-		this.codigoSeguridad = codigoSeguridad;
+    public TarjetaDeCredito(String numeroTarjeta, String nombre, String fechaDeVencimiento, int codigoSeguridad) {
+        this.numeroTarjeta = numeroTarjeta;
+        this.nombre = nombre;
+        this.fechaDeVencimiento = fechaDeVencimiento;
+        this.codigoSeguridad = codigoSeguridad;
         this.vencida = false;
         this.estado = new EstadoCreada();
-	}
+    }
 
-	public String getNombre() {
+    public String getNombre() {
 		return nombre;
 	}
 

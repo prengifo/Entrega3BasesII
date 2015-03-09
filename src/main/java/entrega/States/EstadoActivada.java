@@ -17,7 +17,7 @@ public class EstadoActivada implements Estado {
 
         System.out.println("Verificamos no se haya vencido");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-yyyy");
         Date date = null;
 
         try {
@@ -31,8 +31,10 @@ public class EstadoActivada implements Estado {
         }
 
         assert date != null;
-        if (date.after(new Date())) {
+        if (date.before(new Date())) {
+            System.out.println("Vencida");
             tdc.setEstado(new EstadoInvalida());
         }
+        System.out.println("No ha vencido");
     }
 }
