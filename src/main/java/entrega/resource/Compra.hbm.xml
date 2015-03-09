@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="main.java.entrega.models">
+    <database-object>
+        <create>
+            CREATE TRIGGER compra AFTER INSER ON COMPRA
+            FOR EACH ROW BEGIN
+
+            END;
+        </create>
+        <drop>
+            DROP TRIGGER compra;
+        </drop>
+        <dialect-scope name="org.hibernate.dialect.MySQLDialect"/>
+    </database-object>
+</hibernate-mapping>
