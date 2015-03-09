@@ -7,16 +7,22 @@
     <database-object>
         <create>
             CREATE TRIGGER publicada AFTER INSERT ON PROMOCION
-            FOR EACH ROW BEGIN
-            UPDATE CIUDAD
-            SET cantidad_promociones = cantidad_promociones + 1
-            WHERE NEW.ubicaciones = ubicaciones
+            FOR EACH ROW
+                BEGIN
+                UPDATE CIUDAD
+                SET numeroPromociones = numeroPromociones + 1
+                FROM CIUDAD c
+                INNER JOIN PROMOCION_CIUDAD pc
+                INNER JOIN UBICACION_CIUDAD uc
+                WHERE NEW.id = pc.id AND pc.coordenas = uc.coordenas AND pc.ciudad_nombre = c.nombre;
             END;
+
             CREATE TRIGGER calificada AFTER UPDATE calificacion ON PROMOCION
-            FOR EACH ROW BEGIN
-            UPDATE CIUDAD
-            SET calificacion_ciudad = (calificacion_ciudad + calificacion)/ numero_promociones
-            WHERE NEW.ubicaciones = ubicaciones
+            FOR EACH ROW
+            BEGIN
+                UPDATE CIUDAD
+                SET calificacion_ciudad = (calificacion_ciudad + calificacion)/ numero_promociones
+                WHERE NEW.ubicaciones = ubicaciones
             END;
         </create>
         <drop>

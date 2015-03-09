@@ -6,19 +6,24 @@
 <hibernate-mapping package="main.java.entrega.models">
     <database-object>
         <create>
-            CREATE TRIGGER compra BEFORE INSERT ON COMPRA
-            FOR EACH ROW BEGIN
+            CREATE TRIGGER compra BEFORE INSERT
+            ON COMPRA
+            FOR EACH ROW
+            BEGIN
+            DECLARE cantidad int;
+
             SELECT qt INTO cantidad
-            FROM Promocion NATURAL JOIN Compra
-            WHERE p.id = NEW.CompraId.Promocion;
-            IF cantidad < NEW.cantidad THEN
-            SIGNAL SQLSTATE '45000'
+            FROM Promocion p NATURAL JOIN Compra
+            WHERE p.id = NEW.id;
+
+            IF cantidad &lt; NEW.Cantidad THEN
+                                       SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Compra con mayor cantidad que disponible';
             END IF;
+
             UPDATE Promocion
             SET qt = qt - 1
-            WHERE id = :new.CompraId.promocion
-            END;
+            WHERE id = new.id;
         </create>
         <drop>
             DROP TRIGGER compra;

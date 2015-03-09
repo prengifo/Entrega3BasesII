@@ -50,6 +50,23 @@ public class Main {
             session.close();
         }
     }
+
+    public static void testTrigegr(CiudadId cityId){
+        Session session = factory.openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Ciudad city2 = (Ciudad) session.load(Ciudad.class, cityId);
+            System.out.println("Cantidad de promociones en ciudad después de inserción");
+            System.out.println(city2.getNumeroPromociones());
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!= null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 	
 	public static void testEverything() {
 		Session session = factory.openSession();
@@ -123,6 +140,7 @@ public class Main {
 			
 			Promocion promocion = new Promocion();
 			promocion.setNombre("Cafes en Damper");
+            promocion.setQt(10);
 			promocion.setEmpresa(empresa1);
 			promocion.setCategoria(categoria3);
 			
@@ -133,12 +151,14 @@ public class Main {
 			
 			Promocion promocion2 = new Promocion();
 			promocion2.setNombre("desarrollos web gratis");
+            promocion2.setQt(1);
 			promocion2.setEmpresa(empresa2);
 			promocion2.setUbicaciones(ubicaciones);
 			promocion2.setCategoria(categoria2);
 			
 			Promocion promocion3 = new Promocion();
 			promocion3.setNombre("desarrollo de aplicaciones moviles con descuento");
+            promocion3.setQt(2);
 			promocion3.setEmpresa(empresa2);
 			promocion3.setUbicaciones(ubicaciones);
 			promocion3.setCategoria(categoria2);
@@ -170,6 +190,7 @@ public class Main {
 			compra1.setPk(new CompraId());
 			compra1.setUsuario(user);
 			compra1.setPromocion(promocion3);
+            compra1.setCantidad(1);
 			compra1.setDestinatario("danielar92@gmail.com");
 			compra1.setMetodoPago("TDC");
 			compra1.setCompartido(false);
@@ -177,10 +198,12 @@ public class Main {
 			Compra compra2 = new Compra();
 			compra2.setPk(new CompraId());
 			compra2.setUsuario(user);
+            compra2.setCantidad(3);
 			compra2.setPromocion(promocion2);
 			compra2.setDestinatario("david@gmail.com");
 			compra2.setMetodoPago("TDC");
 			compra2.setCompartido(false);
+
 			
 			Comparte comparte1 = new Comparte();
 			comparte1.setPk(new ComparteId());
@@ -227,7 +250,14 @@ public class Main {
 			System.out.println("Tercera Consulta");
 			promocionesCompartidasPorUsuario(session, user);
 
+            System.out.println("Cantidad de promociones en ciudad antes de inserción");
+            System.out.println(city.getNumeroPromociones());
+
 			tx.commit();
+
+
+            testTrigegr(city.getId());
+
             System.out.println("prueba de estados");
             tarjeta.doAction();
             tarjeta1.doAction();
