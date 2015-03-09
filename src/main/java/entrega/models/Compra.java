@@ -27,7 +27,10 @@ public class Compra {
 	
 	@Column(name="metodoPago")
 	private String metodoPago;
-	
+
+    @Column(name = "cantidad")
+    private int cantidad;
+
 	@Column(name="destinatario")
 	private String destinatario;
 	
@@ -80,6 +83,12 @@ public class Compra {
 	public void setDestinatario(String destinatario) {
 		this.destinatario = destinatario;
 	}
-	
-	
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 }

@@ -6,15 +6,22 @@
     <hibernate-mapping package="main.java.entrega.models">
     <database-object>
         <create>
-            CREATE TRIGGER
-            CREATE TRIGGER proof AFTER INSERT ON PERSON1
+            CREATE TRIGGER publicada AFTER INSERT ON PROMOCION
             FOR EACH ROW BEGIN
-
-            INSERT INTO PERSON2 SET id2 = NEW.id1;
+            UPDATE CIUDAD
+            SET cantidad_promociones = cantidad_promociones + 1
+            WHERE NEW.ubicaciones = ubicaciones
+            END;
+            CREATE TRIGGER calificada AFTER UPDATE calificacion ON PROMOCION
+            FOR EACH ROW BEGIN
+            UPDATE CIUDAD
+            SET calificacion_ciudad = (calificacion_ciudad + calificacion)/ numero_promociones
+            WHERE NEW.ubicaciones = ubicaciones
             END;
         </create>
         <drop>
-            drop trigger proof;
+            DROP TRIGGER publicada;
+            DROP TRIGGER calificada;
         </drop>
         <dialect-scope name="org.hibernate.dialect.MySQLDialect"/>
     </database-object>

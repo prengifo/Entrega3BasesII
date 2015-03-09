@@ -39,6 +39,9 @@ public class Promocion {
 	
 	@Column(name="periodoVigencia")
 	private String periodoVigencia;
+
+    @Column(name = "qt")
+    private int qt;
 	
 	@ElementCollection
 	@CollectionTable(name="EnlacesWeb", joinColumns=@JoinColumn(name="id"))
@@ -195,4 +198,11 @@ public class Promocion {
 		this.usuariosHanComprado = usuariosHanComprado;
 	}
 
+    public int getQt() {
+        return qt;
+    }
+
+    public void setQt(int qt) {
+        this.qt = qt;
+    }
 }
